@@ -8,11 +8,15 @@ const fs = require('fs');
 const allEmails = fs.readFileSync('nameEmail.txt', 'utf8');
 
 const splitedEmails = allEmails.split('\n').map(email => email.split('<'));
-const emailsInObject = splitedEmails.map(emails => {
-  const obj = {};
-  (obj.name = emails[0]), (obj.email = emails[1]);
-  return { ...obj };
-});
-console.log({ emailsInObject });
-// const jsonObj = JSON.stringify(obj);
-// console.log(jsonObj);
+console.log({ splitedEmails });
+
+const emailAndName = splitedEmails.reduce((acc, cv) => {
+  acc.push({
+    name: cv[0],
+    email: cv[1] !== undefined ? cv[1].replace('>,', '') : '',
+  });
+  console.log(acc.length);
+  return acc;
+}, []);
+
+console.log({ emailAndName });
