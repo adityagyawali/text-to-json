@@ -13,7 +13,7 @@ console.log({ splitedEmails });
 const emailAndName = splitedEmails.reduce((acc, cv) => {
   acc.push({
     name: cv[0],
-    email: cv[1] !== undefined ? cv[1].replace('>,', '') : '',
+    email: cv[1] !== undefined ? cv[1].replace('>', '') : '',
   });
   console.log(acc.length);
   return acc;
